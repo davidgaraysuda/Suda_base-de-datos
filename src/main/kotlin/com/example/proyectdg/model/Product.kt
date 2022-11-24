@@ -19,7 +19,6 @@ class Product  {
     @NotBlank
     @NotNull
     var brand: String?=null
-    @NotBlank
     @NotNull
     var stock: Long?=null
 }

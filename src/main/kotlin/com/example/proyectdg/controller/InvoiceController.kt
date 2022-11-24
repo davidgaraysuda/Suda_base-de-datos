@@ -34,4 +34,9 @@ class InvoiceController {
     fun updateName (@RequestBody @Valid invoice:Invoice): ResponseEntity<Invoice>{
         return ResponseEntity(invoiceService.updateName(invoice), HttpStatus.OK)
     }
+
+    @GetMapping("/totals/{total}")
+    fun listTotals(@PathVariable("total") total:Double):ResponseEntity<*>{
+        return ResponseEntity(invoiceService.listTotalMoreThan(total), HttpStatus.OK)
+    }
 }
