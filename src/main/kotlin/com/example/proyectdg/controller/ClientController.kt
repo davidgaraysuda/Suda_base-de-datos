@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/client")
@@ -15,7 +16,7 @@ class ClientController {
     lateinit var clientService: ClientService
 
     @PostMapping
-    fun save (@RequestBody client:Client):Client{
+    fun save (@RequestBody @Valid client:Client):Client{
         return clientService.save(client)
     }
 
@@ -25,12 +26,12 @@ class ClientController {
     }
 
     @PutMapping
-    fun update (@RequestBody client:Client):ResponseEntity<Client>{
+    fun update (@RequestBody @Valid client:Client):ResponseEntity<Client>{
         return ResponseEntity(clientService.update(client), HttpStatus.OK)
     }
 
     @PatchMapping
-    fun updateName (@RequestBody client:Client): ResponseEntity<Client>{
+    fun updateName (@RequestBody @Valid client:Client): ResponseEntity<Client>{
         return ResponseEntity(clientService.updateName(client), HttpStatus.OK)
     }
 }

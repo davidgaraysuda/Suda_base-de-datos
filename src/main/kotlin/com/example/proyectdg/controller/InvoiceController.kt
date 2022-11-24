@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/invoice")
@@ -15,7 +16,7 @@ class InvoiceController {
     lateinit var invoiceService: InvoiceService
 
     @PostMapping
-    fun save (@RequestBody invoice:Invoice):Invoice{
+    fun save (@RequestBody @Valid invoice:Invoice):Invoice{
         return invoiceService.save(invoice)
     }
 
@@ -25,12 +26,12 @@ class InvoiceController {
     }
 
     @PutMapping
-    fun update (@RequestBody invoice:Invoice):ResponseEntity<Invoice>{
+    fun update (@RequestBody @Valid invoice:Invoice):ResponseEntity<Invoice>{
         return ResponseEntity(invoiceService.update(invoice), HttpStatus.OK)
     }
 
     @PatchMapping
-    fun updateName (@RequestBody invoice:Invoice): ResponseEntity<Invoice>{
+    fun updateName (@RequestBody @Valid invoice:Invoice): ResponseEntity<Invoice>{
         return ResponseEntity(invoiceService.updateName(invoice), HttpStatus.OK)
     }
 }
