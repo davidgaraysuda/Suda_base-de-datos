@@ -21,4 +21,5 @@ class Product  {
     var brand: String?=null
     @NotNull
     var stock: Long?=null
+    var price:Double?=null
 }
