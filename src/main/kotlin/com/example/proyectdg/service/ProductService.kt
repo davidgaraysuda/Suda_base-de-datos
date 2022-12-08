@@ -50,4 +50,11 @@ class ProductService {
             throw ResponseStatusException(HttpStatus.NOT_FOUND,ex.message)
         }
     }
+
+    fun delete (id: Long?):Boolean?{
+        productRepository.findById(id) ?:
+        throw  Exception()
+        productRepository.deleteById(id!!)
+        return true
+    }
 }

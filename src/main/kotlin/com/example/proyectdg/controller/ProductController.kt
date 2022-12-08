@@ -34,4 +34,9 @@ class ProductController {
     fun updateName (@RequestBody @Valid product:Product): ResponseEntity<Product>{
         return ResponseEntity(productService.updateName(product), HttpStatus.OK)
     }
+
+    @DeleteMapping("/delete/{id}")
+    fun delete (@PathVariable("id") id: Long):Boolean?{
+        return productService.delete(id)
+    }
 }
