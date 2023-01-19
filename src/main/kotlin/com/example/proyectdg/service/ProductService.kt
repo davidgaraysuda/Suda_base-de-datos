@@ -18,9 +18,18 @@ class ProductService {
 
 
     fun save (product: Product):Product{
+        try{
+            product.description?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("La descripcion no debe ser vacio")
+            product.stock?.takeIf { product.stock!!>0 }
+                ?: throw Exception("La descripcion no debe ser vacio")
             return productRepository.save(product)
-
+        }
+        catch (ex:Exception){
+            throw ResponseStatusException(HttpStatus.NOT_FOUND, ex.message)
+        }
     }
+
     fun list ():List<Product>{
         return productRepository.findAll()
     }

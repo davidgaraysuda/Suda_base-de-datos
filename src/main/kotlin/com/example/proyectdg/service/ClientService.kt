@@ -22,6 +22,8 @@ class ClientService {
         try{
         client.fullname?.takeIf { it.trim().isNotEmpty() }
             ?: throw Exception("El Nombre no debe ser vacio")
+            client.nui?.takeIf { it.trim().isNotEmpty() }
+            ?: throw Exception("El numero de cedula no debe ser vacio")
         return clientRepository.save(client)
     }
     catch (ex:Exception){
